@@ -5,7 +5,7 @@ A Cake Addin to post reviews/comments/labels to Gerrit Code Review
 ### Usage
 
 ```powershell
-#addin "Cake.Cake.Gerrit"
+#addin "Cake.Cake.Gerrit&loaddependencies=true"
 ```
 
 ```cs
