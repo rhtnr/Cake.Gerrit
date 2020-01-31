@@ -44,16 +44,19 @@ namespace Cake.Gerrit.Tests
             IGerritCommand addCodeRevC = new AddCodeReviewCommand(5);
             IGerritCommand addLabelC = new AddLabelCommand(label, -5);
             IGerritCommand addVerifiedC = new AddVerifiedCommand(-4);
+            IGerritCommand addMessageC = new AddMessageCommand(label);
 
             //act
             string addCodeRevCR = addCodeRevC.GetCommandString();
             string addLabelCR = addLabelC.GetCommandString();
             string addVerifiedCR = addVerifiedC.GetCommandString();
+            string addMessageCR = addMessageC.GetCommandString();
 
             //assert
             Assert.Equal("--code-review +5", addCodeRevCR);
             Assert.Equal($"--label {label}=-5", addLabelCR);
             Assert.Equal("--verified -4", addVerifiedCR);
+            Assert.Equal("-m '\"myLabel\"'", addVerifiedCR);
         }
 
         [Fact]

@@ -129,6 +129,23 @@ namespace Cake.Gerrit
             Run(context, authSettings, new RestoreCommand(), commitInfo);
         }
 
+        /// <summary>
+        /// Append the message to a commit in Gerrit
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="authSettings">Gerrit server and authentication settings</param>
+        /// <param name="commitInfo">Gerrit commit information<</param>
+        [CakeMethodAlias]
+        [CakeAliasCategory("Review Comments")]
+        public static void AddMessage(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo, string message)
+        {
+            CheckNullArg(authSettings, nameof(authSettings));
+            CheckNullArg(commitInfo, nameof(commitInfo));
+            CheckNullArg(message, nameof(message));
+
+            Run(context, authSettings, new AddMessageCommand(message), commitInfo);
+        }
+
         private static void Run(ICakeContext context, GerritAuthConfig authSettings, IGerritCommand command, GerritCommitInfo commitInfo)
         {
             ICakeLog logger = context.Log;
