@@ -1,6 +1,8 @@
 # Cake.Gerrit
 A Cake Addin to post reviews/comments/labels to Gerrit Code Review
 
+![](https://github.com/rhtnr/Cake.Gerrit/workflows/Test%20Build%20Publish%20Push/badge.svg)
+
 
 ### Usage
 
