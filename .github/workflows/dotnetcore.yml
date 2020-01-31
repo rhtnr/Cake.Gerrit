@@ -1,11 +1,11 @@
-name: Test Build Push
+name: Test Build Publish Push
 
 on: [push]
 
 jobs:
   build:
 
-    runs-on: [windows-latest]
+    runs-on: [ubuntu-latest]
 
     steps:
     - uses: actions/checkout@v1
@@ -13,14 +13,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.108
-    - uses: actions/checkout@master
-    - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
     - name: Test
       run: dotnet test tests/Cake.Gerrit.Tests/Cake.Gerrit.Tests.csproj
     - name: Build
       run: |
         dotnet build -c Release
-        dotnet pack -c Release -o . src\Cake.Gerrit\Cake.Gerrit.csproj
+    - name: Publish
+      run: dotnet pack -c Release -o . src\Cake.Gerrit\Cake.Gerrit.csproj
     - name: Push
-      run: dotnet push *.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
