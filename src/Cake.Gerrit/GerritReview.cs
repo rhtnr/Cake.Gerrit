@@ -45,7 +45,7 @@ namespace Cake.Gerrit
         /// <param name="n">Set the label to the value 'N'</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void AddLabel(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo, string label, int n)
+        public static void AddLabel(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo, string label, int n)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
@@ -62,7 +62,7 @@ namespace Cake.Gerrit
         /// <param name="n">Set the label to the value 'N'</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void AddVerified(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo, int n)
+        public static void AddVerified(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo, int n)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
@@ -77,7 +77,7 @@ namespace Cake.Gerrit
         /// <param name="commitInfo">Gerrit commit information<</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void Abandon(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo)
+        public static void Abandon(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
@@ -92,7 +92,7 @@ namespace Cake.Gerrit
         /// <param name="commitInfo">Gerrit commit information<</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void Submit(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo)
+        public static void Submit(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
@@ -107,7 +107,7 @@ namespace Cake.Gerrit
         /// <param name="commitInfo">Gerrit commit information<</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void Rebase(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo)
+        public static void Rebase(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
@@ -122,14 +122,14 @@ namespace Cake.Gerrit
         /// <param name="commitInfo">Gerrit commit information<</param>
         [CakeMethodAlias]
         [CakeAliasCategory("Review Comments")]
-        public static void Restore(this ICakeContext context, GerritAuthConfig authSettings, IGerritCommitInfo commitInfo)
+        public static void Restore(this ICakeContext context, GerritAuthConfig authSettings, GerritCommitInfo commitInfo)
         {
             CheckNullArg(authSettings, nameof(authSettings));
             CheckNullArg(commitInfo, nameof(commitInfo));
             Run(context, authSettings, new RestoreCommand(), commitInfo);
         }
 
-        private static void Run(ICakeContext context, GerritAuthConfig authSettings, IGerritCommand command, IGerritCommitInfo commitInfo)
+        private static void Run(ICakeContext context, GerritAuthConfig authSettings, IGerritCommand command, GerritCommitInfo commitInfo)
         {
             ICakeLog logger = context.Log;
 

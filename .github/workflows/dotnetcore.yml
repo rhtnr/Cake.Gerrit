@@ -23,4 +23,4 @@ jobs:
         find . -name "*.nupkg" -type f -delete
         dotnet pack -c Release -o . src/Cake.Gerrit/Cake.Gerrit.csproj
     - name: Push
-      run: dotnet nuget push *.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
