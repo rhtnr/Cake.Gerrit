@@ -21,7 +21,5 @@ jobs:
         find . -name "*.nupkg" -type f -delete
     - name: Publish
       run: dotnet publish -c Release
-    - name: Check for presence of built NUGET package
-      run: find . -name *.nupkg
     - name: Push
-      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push /src/Cake.Gerrit/bin/Release/Cake.Gerrit.*.*.*.*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
