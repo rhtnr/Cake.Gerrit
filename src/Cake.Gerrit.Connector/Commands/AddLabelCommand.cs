@@ -18,6 +18,7 @@ namespace Cake.Gerrit.Connector.Commands
 
         public string GetCommandString()
         {
+            if (n == 0) return $"{command} {label}={n}";
             return n>0 ? $"{command} {label}=+{n}" : $"{command} {label}=-{-n}";
         }
     }
