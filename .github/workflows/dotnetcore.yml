@@ -17,7 +17,7 @@ jobs:
       run: dotnet test tests/Cake.Gerrit.Tests/Cake.Gerrit.Tests.csproj
     - name: Build
       run: |
-        find . -name "*.nupkg" -type f -delete
         dotnet build -c Release
+        nuget pack -Properties Configuration=Release -IncludeReferencedProjects src/Cake.Gerrit/Cake.Gerrit.csproj
     - name: Push
-      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push *.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
