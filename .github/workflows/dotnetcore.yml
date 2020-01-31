@@ -1,4 +1,4 @@
-name: Test Build Publish Push
+name: Test Build Push
 
 on: [push]
 
@@ -17,9 +17,7 @@ jobs:
       run: dotnet test tests/Cake.Gerrit.Tests/Cake.Gerrit.Tests.csproj
     - name: Build
       run: |
-        dotnet build -c Release
         find . -name "*.nupkg" -type f -delete
-    - name: Publish
-      run: dotnet publish -c Release
+        dotnet build -c Release
     - name: Push
-      run: dotnet nuget push src/Cake.Gerrit/bin/Release/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
