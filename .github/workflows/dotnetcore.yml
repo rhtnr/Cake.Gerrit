@@ -1,0 +1,25 @@
+name: Test Build Publish Push
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Test
+      run: dotnet test tests/Cake.Gerrit.Tests/Cake.Gerrit.Tests.csproj
+    - name: Build
+      run: |
+        dotnet build -c Release
+        find . -name "*.nupkg" -type f -delete
+    - name: Publish
+      run: dotnet publish -c Release
+    - name: Push
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.NugetCakeKey}} --source https://api.nuget.org/v3/index.json --no-symbols true
