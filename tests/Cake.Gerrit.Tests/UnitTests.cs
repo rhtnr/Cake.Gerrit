@@ -56,7 +56,7 @@ namespace Cake.Gerrit.Tests
             Assert.Equal("--code-review +5", addCodeRevCR);
             Assert.Equal($"--label {label}=-5", addLabelCR);
             Assert.Equal("--verified -4", addVerifiedCR);
-            Assert.Equal("-m '\"myLabel\"'", addMessageCR);
+            Assert.Equal("-m 'myLabel'", addMessageCR);
         }
 
         [Fact]

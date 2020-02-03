@@ -17,7 +17,7 @@ namespace Cake.Gerrit.Connector.Commands
 
         public string GetCommandString()
         {
-            return $"{command} '\"{message}\"'";
+            return $"{command} '{message}'";
         }
     }
 }
